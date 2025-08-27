@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":[],"sourcesContent":[],"names":[],"mappings":""}
+{"version":3,"file":"index.js","sources":["../src/js/artists.js","../src/js/feedback.js","../src/js/header.js","../src/js/modal.js"],"sourcesContent":["console.log('Im artists ')","console.log('Im feedback')","console.log('Im header')","console.log('Im modal')"],"names":[],"mappings":"ssBAAA,QAAQ,IAAI,aAAa,ECAzB,QAAQ,IAAI,aAAa,ECAzB,QAAQ,IAAI,WAAW,ECAvB,QAAQ,IAAI,UAAU"}
