@@ -80,7 +80,7 @@ function createArtist(artist) {
       <ul class="artists-card">
         <li>
           <div class="artist-img-box">
-            <img src="${artist.strArtistThumb}"/>
+            <img src="${artist.strArtistThumb}" alt="${artist.strArtist}"/>
           </div>
         </li>
         <li>
