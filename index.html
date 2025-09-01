@@ -12,10 +12,16 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Sans:wght@100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="iziToast.min.css" />
     <script type="module" crossorigin src="/project-cyte/index.js"></script>
     <link rel="modulepreload" crossorigin href="/project-cyte/assets/vendor-BLO6kU33.js">
-    <link rel="stylesheet" crossorigin href="/project-cyte/assets/index-zYMwgeBb.css">
+    <link rel="stylesheet" crossorigin href="/project-cyte/assets/index-Cma8Kvgf.css">
   </head>
   <body>
     <header>
@@ -152,7 +158,23 @@
   <h3 class="artists-subheader">Explore Your New Favorite Artists</h3>
 
   <ul class="artists-list-js artists-list"></ul>
-  <button class="artists-load-js artists-load-more">Load more</button>
+  <button class="artists-load-js artists-load-more">
+    Load more
+    <span class="artist-svg">
+      <svg
+        width="14"
+        height="15"
+        viewBox="0 0 14 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13.707 7.60055L12.293 6.18655L7.99997 10.4796V0.893555H5.99997V10.4796L1.70697 6.18655L0.292969 7.60055L6.99997 14.3076L13.707 7.60055Z"
+          fill="white"
+        />
+      </svg>
+    </span>
+  </button>
   <div class="artist-loader-js artist-loader"><p></p></div>
 </div>
 
@@ -167,17 +189,16 @@
 <p>This is feedback section</p>
 </div>
       </section>
-      <section>
-        <div class="container">
-<p>This is modal window</p>
-</div>
-      </section>
     </main>
     <footer>
       <div class="container">
   <p>This is footer section</p>
 </div>
     </footer>
+    <div class="container">
+  <div class="modal-window modal-window-js"></div>
+  <div class="modal-loader modal-loader-js"></div>
+</div>
 
   </body>
 </html>
