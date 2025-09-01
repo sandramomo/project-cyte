@@ -8,7 +8,7 @@ import 'raty-js';
 // --- Логика отзывов ---
 const loader = document.getElementById('loader');
 const notification = document.getElementById('notification');
-const wrapper = document.getElementById('feedbacks-wrapper');
+const wrapper = document.querySelector('.feedback-swiper .swiper-wrapper');
 
 const showLoader = () => (loader.style.display = 'block');
 const hideLoader = () => (loader.style.display = 'none');
@@ -22,13 +22,26 @@ const showNotification = msg => {
 async function loadFeedbacks() {
   showLoader();
   try {
-    const res = await fetch('/feedbacks');
+    // Новый запрос на внешний API
+    const res = await fetch(
+      'https://sound-wave.b.goit.study/api/feedbacks?limit=10&page=1',
+      {
+        headers: {
+          Accept: 'application/json',
+        },
+      }
+    );
+
     if (!res.ok) throw new Error('Помилка завантаження відгуків');
 
     const data = await res.json();
     hideLoader();
 
-    data.slice(0, 10).forEach(fb => {
+    // Очищаем wrapper перед добавлением новых слайдов!
+    wrapper.innerHTML = '';
+
+    // В API отзывы лежат в data.data
+    data.data.forEach(fb => {
       const roundedRating = Math.round(fb.rating);
 
       const slide = document.createElement('div');
@@ -38,7 +51,7 @@ async function loadFeedbacks() {
         <div class="feedback-card">
           <div class="star-rating" data-score="${roundedRating}"></div>
           <p class="feedback-text">${fb.descr}</p>
-<p class="feedback-user">— ${fb.name}</p>
+          <p class="feedback-user">— ${fb.name}</p>
         </div>
       `;
       wrapper.appendChild(slide);
@@ -52,8 +65,13 @@ async function loadFeedbacks() {
   }
 }
 
+let swiperInstance = null;
+
 function initSwiper() {
-  const swiper = new Swiper('.feedback-swiper', {
+  if (swiperInstance) {
+    swiperInstance.destroy(true, true);
+  }
+  swiperInstance = new Swiper('.feedback-swiper', {
     slidesPerView: 1,
     navigation: {
       nextEl: '.swiper-button-next',
@@ -65,7 +83,7 @@ function initSwiper() {
       },
     },
   });
-  updatePagination(swiper);
+  updatePagination(swiperInstance);
 }
 
 function updatePagination(swiper) {
@@ -94,4 +112,5 @@ function initStars() {
   });
 }
 
+console.log('🚀 Страница загружена, вызываем loadFeedbacks()');
 loadFeedbacks();

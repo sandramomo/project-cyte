@@ -138,3 +138,17 @@
 .custom-pagination .dot {
   cursor: pointer;
 }
+.feedback-swiper {
+  width: 100%;
+  max-width: 600px;
+  min-height: 200px;
+  margin: 0 auto;
+}
+.swiper-wrapper {
+  min-height: 150px;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
