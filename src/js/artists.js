@@ -80,7 +80,7 @@ function createArtist(artist) {
       <ul class="artists-card">
         <li>
           <div class="artist-img-box">
-            <img src="${artist.strArtistThumb}"/>
+            <img src="${artist.strArtistThumb}" alt="${artist.strArtist}"/>
           </div>
         </li>
         <li>
@@ -93,7 +93,7 @@ function createArtist(artist) {
           </div>
         </li>
         <li>
-          <button class="artists-learn-js artists-learn"> Learn more  <span class="artist-svg"><svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button class="artists-learn-js artists-learn" data-artist-id=${artist._id}> Learn more  <span class="artist-svg"><svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M0 14.9426L8 7.94263L0 0.942627V14.9426Z" fill="white" />
 </svg></span> </button>
         </li>
