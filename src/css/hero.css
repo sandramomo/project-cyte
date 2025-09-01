@@ -1,135 +1,342 @@
-/* Сброс стилей */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Секция Hero */
-.hero {
-  background: 
-    linear-gradient(to bottom, #060307 0%, #23132B00 100%) top,
-    linear-gradient(to top, #060307 0%, #23132B00 100%) bottom,
-    #23132B;
-  background-repeat: no-repeat;
-  background-size: 100% 80px, 100% 80px, cover;
-  background-position: top, bottom, center;
+body {
+  font-family: "Arial", sans-serif;
+  background: #fff;
+  color: #222;
+  line-height: 1.4;
+}
 
+/* ==== Hero Section ==== */
+.hero {
+  position: relative;
+  background: #2D1639;
   width: 100%;
   min-height: 100vh;
-  padding: 64px;
+  padding: 80px 64px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  justify-content: center;
 }
 
-/* Контейнер Hero (текст слева, фото справа) */
+/* Градиенты сверху и снизу */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(26,11,32,1) 0%, rgba(26,11,32,0) 100%);
+}
+
+.hero::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(26,11,32,1) 0%, rgba(26,11,32,0) 100%);
+}
+
+/* ==== Text Layer ==== */
 .hero-tatil {
   display: grid;
-  grid-template-columns: minmax(0, 640px) auto; /* текст + фото */
-  column-gap: 64px;
-  align-items: start;
-  margin: auto 64px;
+  grid-template-columns: minmax(0, 520px) 1fr;
+  column-gap: 120px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  align-items: stretch;
+  position: relative;
+  z-index: 3;
 }
 
-/* Заголовок */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+.hero-tatil h1,
+.hero-tatil p {
+  text-align: left;
+}
+
 .hero-tatil h1 {
   margin-bottom: 24px;
-  font-size: 84px;
+  font-size: 72px;
   font-family: "Epilogue", sans-serif;
+  font-weight: 700;
   color: #fff;
-  max-width: 640px;
-  line-height: 1.1;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-align: left;
 }
 
-/* Подзаголовок */
 .hero-tatil p {
-  margin-bottom: 32px;
-  font-size: 20px;
+  margin-bottom: 40px;
+  font-size: 18px;
   font-family: "IBM Plex Sans", sans-serif;
-  color: #fff;
-  max-width: 640px;
-  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
 }
 
-/* Кнопка Hero */
 .hero-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 15px 24px;
+  gap: 8px;
+  padding: 14px 28px;
   border-radius: 12px;
-  font-size: 18px;
+  font-size: 16px;
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: 500;
-  background-color: #764191;
+  background-color: #8B5BA7;
   color: #ffffff;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .hero-btn:hover {
-  background-color: #5d3373;
-}
-
-.hero-btn:active {
-  transform: translateY(0);
+  background-color: #6B4587;
+  transform: translateY(-2px);
 }
 
 .hero-btn svg {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  fill: #fff;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
 }
 
-/* Сетка картинок справа */
+/* ==== Photo Layer ==== */
 .hero-images {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 колонки */
-  grid-template-rows: repeat(3, auto);   /* 3 строки */
-  gap: 16px;
-  max-width: 368px; /* ширина колонки по макету */
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
-.hero-images picture {
-  border-radius: 16px;
-  overflow: hidden;
+.hero-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
 }
 
-.hero-images img {
+.hero-col:nth-child(1) {
+  margin-top: 40px;
+}
+
+.hero-col:nth-child(2) {
+  margin-top: -20px;
+}
+
+.hero-col picture {
+  flex: 1;
   display: block;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hero-col img {
   width: 100%;
-  aspect-ratio: 1 / 1; /* квадрат */
+  height: 100%;
   object-fit: cover;
-  border-radius: 16px;
+  display: block;
 }
 
-/* Сетка артистов ниже (если используешь) */
-.artists {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 64px;
-}
-
-.artist {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 16px;
-  background-size: cover;
-  background-position: center;
-}
-
-/* Адаптив: на мобилке фото в одну колонку */
-@media (max-width: 768px) {
-  .hero-tatil {
-    grid-template-columns: 1fr; /* одна колонка */
-    row-gap: 32px;
+/* ==== Tablet ==== */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hero {
+    padding: 60px 40px;
   }
-  .hero-images {
+
+  .hero-tatil {
     grid-template-columns: 1fr;
-    max-width: none;
+    grid-template-rows: auto auto;
+    gap: 48px;
+  }
+
+  .hero-text {
+    order: 1;
+    text-align: left;
+    align-items: left;
+    margin-top: 40px;
+  }
+
+  .hero-tatil h1 {
+    font-size: 48px;
+    line-height: 1.1;
+    max-width: 640px;
+  }
+
+  .hero-tatil p {
+    font-size: 17px;
+    max-width: 620px;
+    margin-bottom: 32px;
+  }
+
+  .hero-btn {
+    padding: 12px 24px;
+  }
+
+  .hero-images {
+    order: 2;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .hero-col {
+    gap: 16px;
+  }
+
+  .hero-col:nth-child(1) {
+    margin-top: 30px;
+  }
+
+  .hero-col:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .hero-col:nth-child(1) picture:nth-of-type(1) img {
+    height: 240px;
+  }
+
+  .hero-col:nth-child(1) picture:nth-of-type(2) img {
+    height: 380px;
+  }
+
+  .hero-col:nth-child(2) picture:nth-of-type(1) img {
+    height: 260px;
+  }
+
+  .hero-col:nth-child(2) picture:nth-of-type(2) img {
+    height: 180px;
+  }
+
+  .hero-col:nth-child(2) picture:nth-of-type(3) img {
+    height: 180px;
+  }
+
+  .hero-images picture {
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 16px; /* единые внутренние отступы */
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  /* Градиенты сверху и снизу */
+  .hero::before,
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .hero::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(26,11,32,1) 0%, rgba(26,11,32,0) 100%);
+  }
+
+  .hero::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(26,11,32,1) 0%, rgba(26,11,32,0) 100%);
+  }
+
+  /* Текстовый блок */
+  .hero-tatil {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+    position: relative;
+    z-index: 3;
+  }
+
+  .hero-tatil h1 {
+    font-size: 32px; /* меньше, чем на десктопе, для мобильных */
+    line-height: 1.2;
+    margin: 20px 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  .hero-tatil p {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 0 0 24px 0;
+    color: rgba(255,255,255,0.85);
+    width: 100%;
+  }
+
+  /* Кнопка */
+  .hero-btn {
+    width: 100%;
+    max-width: 288px;
+    height: 47px;
+    padding: 14px 16px;
+    font-size: 16px;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto 24px auto; /* центрируем */
+  }
+
+  /* Блок картинок */
+  .hero-images {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Каждая карточка под фиксированное соотношение */
+  .hero-images picture {
+    display: block;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 3 / 4; /* как в макете */
+  }
+
+  .hero-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* обрезка без искажений */
+    display: block;
+  }
+
+  /* Текстовый блок после картинок */
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
   }
 }
