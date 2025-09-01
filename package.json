@@ -20,8 +20,22 @@
   "dependencies": {
     "axios": "^1.11.0",
     "izitoast": "^1.4.0",
+    "jquery": "^3.7.1",
     "normalize-scss": "^8.0.0",
+    "raty-js": "^4.3.0",
+    "swiper": "^11.2.10",
     "vite-plugin-full-reload": "^1.2.0",
     "vite-plugin-html-inject": "^1.1.2"
-  }
+  },
+  "description": "Цей проект було створено за допомогою Vite. Для знайомства та налаштування\r додаткових можливостей [звернись до документації](https://vitejs.dev/).",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandramomo/project-cyte.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/sandramomo/project-cyte/issues"
+  },
+  "homepage": "https://github.com/sandramomo/project-cyte#readme"
 }

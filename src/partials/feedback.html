@@ -1,3 +1,28 @@
 <div class="container">
-<p>This is feedback section</p>
+  <p>This is feedback section</p>
+  <h2 class="visually-hidden">Feedbacks our visitors</h2>
+
+  <section class="feedback-section">
+    <div id="loader" class="loader">Loading...</div>
+
+    <div class="swiper feedback-swiper">
+      <div class="swiper-wrapper" id="feedbacks-wrapper"></div>
+
+      <!-- кнопки -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <!-- кастомная пагинация -->
+      <div class="custom-pagination">
+        <span class="dot first"></span>
+        <span class="dot middle"></span>
+        <span class="dot last"></span>
+      </div>
+    </div>
+  </section>
+
+  <div id="notification" class="notification"></div>
+
+  <!-- наш бандл -->
+  <script type="module" src="/js/feedback.js"></script>
 </div>
