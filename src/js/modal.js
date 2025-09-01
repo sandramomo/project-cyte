@@ -43,12 +43,14 @@ function createArtist(artist) {
   <path d="M14.8353 14.364L14.3638 14.8354C14.1035 15.0957 13.6814 15.0957 13.421 14.8354L7.99988 9.4142L2.57868 14.8353C2.31838 15.0957 1.89626 15.0957 1.63591 14.8353L1.1645 14.3639C0.904151 14.1036 0.904151 13.6815 1.1645 13.4211L6.58568 8L1.1645 2.5788C0.904151 2.3185 0.904151 1.89638 1.1645 1.63603L1.6359 1.16463C1.89625 0.904282 2.31838 0.904282 2.57868 1.16463L7.99988 6.5858L13.421 1.16462C13.6814 0.904273 14.1035 0.904273 14.3638 1.16462L14.8353 1.63602C15.0956 1.89637 15.0956 2.3185 14.8353 2.5788L9.41408 8L14.8353 13.4211C15.0956 13.6815 15.0956 14.1036 14.8353 14.364Z" fill="white" />
 </svg></button>
     <p class="modal-artist-name">${artist.strArtist}</p>
+    <div class="modal-img-desc-box">
     <div class="modal-img-container">
     <img src="${artist.strArtistThumb}" alt="${artist.strArtist}"/>
     </div>
     <ul>
       <li>
         <ul class="modal-artist-desc-list">
+        <div class="modal-columns">
           <li>
             <p class="modal-desc-header">Years</p>
             <p class="modal-artist-desc">${artist.intFormedYear} - ${
@@ -59,6 +61,8 @@ function createArtist(artist) {
             <p class="modal-desc-header">Sex</p>
             <p class="modal-artist-desc">${artist.strGender}</p>
           </li>
+          </div>
+          <div  class="modal-columns">
           <li >
             <p class="modal-desc-header">Members</p>
             <p class="modal-artist-desc"> ${artist.intMembers}</p>
@@ -67,17 +71,22 @@ function createArtist(artist) {
             <p class="modal-desc-header">Country</p>
             <p class="modal-artist-desc">${artist.strCountry}</p>
           </li>
+          </div>
         </ul>
+        
       </li>
       <li>
         <p class="modal-desc-header">Biography</p>
         <p class="modal-artist-desc">${artist.strBiographyEN}</p>
       </li>
+      
       <li>
         <ul class="modal-artist-genres">
           ${artistGenres}
         </ul>
+        
       </li>
+      </div>
     </ul>
     <p class="modal-desc-header">Albums</p>
     <div class="albums-list-js"></div>

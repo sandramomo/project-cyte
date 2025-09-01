@@ -21,6 +21,8 @@ body {
 .artists-list {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .artists-list-item {
   margin-bottom: 64px;
@@ -166,7 +168,7 @@ body {
     width: 340px;
   }
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1440px) {
   .artists-list-item {
     max-width: 640px;
     min-width: 440px;
@@ -176,4 +178,5 @@ body {
     flex-wrap: wrap;
     gap: 32px;
   }
+  
 }
