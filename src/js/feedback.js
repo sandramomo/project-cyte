@@ -10,9 +10,8 @@ import 'raty-js';
 
 // --- Логика отзывов ---
 const loader = document.getElementById('loader');
-const notification = document.getElementById('notification');
+const notification = document.getElementById('feedback');
 const wrapper = document.querySelector('.feedback-swiper .swiper-wrapper');
-
 const showLoader = () => (loader.style.display = 'block');
 const hideLoader = () => (loader.style.display = 'none');
 
