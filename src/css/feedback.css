@@ -94,13 +94,13 @@
 }
 
 .custom-pagination .dot.active {
-  background: #333;
+  background: #fff;
 }
 
 /* Навигационные кнопки Swiper */
 .swiper-button-prev,
 .swiper-button-next {
-  color: #000;
+  color: #62d5c2;
   cursor: pointer;
 }
 
