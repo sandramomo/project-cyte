@@ -1,10 +1,12 @@
 import Swiper from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
+
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
 // register Swiper custom elements
 register();
+
 import $ from 'jquery';
 import 'raty-js';
 
@@ -12,6 +14,7 @@ import 'raty-js';
 const loader = document.getElementById('loader');
 const notification = document.getElementById('feedback');
 const wrapper = document.querySelector('.feedback-swiper .swiper-wrapper');
+
 const showLoader = () => (loader.style.display = 'block');
 const hideLoader = () => (loader.style.display = 'none');
 
@@ -39,7 +42,7 @@ async function loadFeedbacks() {
     const data = await res.json();
     hideLoader();
 
-    // Очищаем wrapper перед добавлением новых слайдов!
+    // Очищаем wrapper перед добавлением новых слайдов
     wrapper.innerHTML = '';
 
     // В API отзывы лежат в data.data
@@ -108,6 +111,7 @@ function updatePagination(swiper) {
 function initStars() {
   $('.star-rating').raty({
     readOnly: true,
+    starType: 'i', // вместо картинок используем <i>
     score: function () {
       return $(this).attr('data-score');
     },
