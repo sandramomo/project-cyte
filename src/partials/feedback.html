@@ -1,27 +1,29 @@
-<div class="container">
-  <h2 class="visually-hidden">Feedbacks our visitors</h2>
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Отзывы</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="visually-hidden">Отзывы наших посетителей</h2>
 
-  <section class="feedback-section">
-    <div id="loader" class="loader-feedback">Loading...</div>
+      <section class="feedback-section">
+        <div id="loader" class="loader-feedback">Loading...</div>
 
-    <div class="swiper feedback-swiper">
-      <div class="swiper-wrapper">
-        <!-- Сюда JS добавит отзывы -->
-      </div>
+        <div class="swiper feedback-swiper">
+          <div class="swiper-wrapper"></div>
 
-      <!-- кнопки -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
 
-      <!-- пагинация -->
-      <div class="custom-pagination">
-        <!-- точки будем рисовать через JS -->
-      </div>
+          <div class="custom-pagination"></div>
+        </div>
+      </section>
     </div>
-  </section>
-</div>
 
-<div id="feedback" class="notification"></div>
-
-<!-- подключение Swiper -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <div id="feedback" class="notification"></div>
+  </body>
+</html>

@@ -1,8 +1,8 @@
 :root {
-  --color-scheme-1-background: var(--color-neutral-darkest);
+  --color-scheme-1-background: #060307;
   --color-neutral-darkest: #060307;
-  --color-scheme-1-border: var(--opacity-white-20);
-  --color-scheme-1-text: var(--color-white);
+  --color-scheme-1-border: rgba(255, 255, 255, 0.2);
+  --color-scheme-1-text: #fff;
   --color-neutral-lighter: #d9d9d9;
   --color-white: #fff;
   --color-neutral-lightest: #f2f2f2;
@@ -11,8 +11,8 @@
   --color-neutral-dark: #504e51;
   --color-neutral-darker: #1e1c1f;
   --opacity-transparent: rgba(255, 255, 255, 0);
-  --color-scheme-1-foreground: var(--color-neutral-darkest);
-  --color-scheme-1-accent: var(--color-white);
+  --color-scheme-1-foreground: #060307;
+  --color-scheme-1-accent: #fff;
   --opacity-white-5: rgba(255, 255, 255, 0.05);
   --opacity-white-10: rgba(255, 255, 255, 0.1);
   --opacity-white-15: rgba(255, 255, 255, 0.15);
@@ -43,24 +43,25 @@
   --color-chateau-green-dark: #347942;
   --color-chateau-green-darker: #1a3c21;
   --color-chateau-green-darkest: #132d18;
-  --color-scheme-2-text: var(--color-white);
-  --color-scheme-2-background: var(--color-neutral-darker);
-  --color-scheme-2-border: var(--opacity-white-20);
-  --color-scheme-2-accent: var(--color-white);
-  --color-scheme-2-foreground: var(--color-neutral-darker);
-  --color-scheme-3-text: var(--color-white);
-  --color-scheme-3-background: var(--color-affair-darkest);
-  --color-scheme-3-border: var(--opacity-white-20);
-  --color-scheme-3-accent: var(--color-white);
-  --color-scheme-3-foreground: var(--color-affair-darkest);
+  --color-scheme-2-text: #fff;
+  --color-scheme-2-background: #1e1c1f;
+  --color-scheme-2-border: rgba(255, 255, 255, 0.2);
+  --color-scheme-2-accent: #fff;
+  --color-scheme-2-foreground: #1e1c1f;
+  --color-scheme-3-text: #fff;
+  --color-scheme-3-background: #23132b;
+  --color-scheme-3-border: rgba(255, 255, 255, 0.2);
+  --color-scheme-3-accent: #fff;
+  --color-scheme-3-foreground: #23132b;
   --color-error-red: #af0404;
 }
+
 :root {
   --font-family: 'IBM Plex Sans', sans-serif;
   --second-family: 'Epilogue', sans-serif;
   --third-family: 'Roboto', sans-serif;
 }
-/* Скрытый заголовок */
+
 .visually-hidden {
   position: absolute;
   clip: rect(0 0 0 0);
@@ -70,7 +71,6 @@
   overflow: hidden;
 }
 
-/* Секция отзывов */
 .feedback-section {
   height: auto;
   padding: 112px 64px;
@@ -91,6 +91,10 @@
   max-width: 866px;
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .feedback-text {
@@ -112,7 +116,6 @@
   color: var(--color-scheme-1-text);
 }
 
-/* Loader */
 .loader-feedback {
   position: absolute;
   top: 50%;
@@ -122,7 +125,6 @@
   display: none;
 }
 
-/* Пуш-уведомления */
 .notification {
   position: fixed;
   top: 20px;
@@ -135,60 +137,65 @@
   z-index: 999;
 }
 
-/* Навигационные кнопки Swiper */
+/* Стили для кнопок навигации по умолчанию (видны) */
 .swiper-button-prev,
 .swiper-button-next {
   color: #62d5c2;
   cursor: pointer;
+  display: block; /* По умолчанию видны */
 }
 
-/* Hover */
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
   opacity: 0.7;
 }
 
-/* Адаптив */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .feedback-section {
-    height: auto;
-    padding: 80px 40px;
+    padding: 80px 0;
+    max-width: 768px;
+    width: 100%;
+  }
+  .feedback-text {
+    font-size: 26px;
+  }
+  .feedback-card {
+    padding: 20px;
+  }
+  /* Скрываем кнопки навигации на мобильных */
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 320px) {
   .feedback-section {
-    height: auto;
     padding: 40px 20px;
+    max-width: 320px;
+    width: 100%;
   }
-
   .feedback-card {
     padding: 16px;
   }
-
   .feedback-text {
-    font-size: 14px;
+    font-size: 18px;
   }
 }
-.swiper-button-prev,
-.swiper-button-next,
-.custom-pagination .dot {
-  cursor: pointer;
-}
+
 .feedback-swiper {
   width: 100%;
-  max-width: 600px;
-  min-height: 200px;
+  max-width: 800px;
+  height: 100%;
+  position: relative;
   margin: 0 auto;
 }
+
 .swiper-wrapper {
   min-height: 150px;
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background-color: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,43 +207,60 @@
   height: 100%;
   object-fit: cover;
 }
-/* Свайпер */
-.feedback-swiper {
-  width: 100%;
-  max-width: 800px;
-  height: 100%;
-  position: relative;
+
+/* Стили для пагинации */
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
-/* Общий контейнер для звёзд */
+
+.custom-pagination .dot {
+  cursor: pointer;
+  background-color: var(--color-neutral-light);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 4px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.custom-pagination .dot.active {
+  background-color: var(--color-white);
+}
+
+/* Стили для звёзд (Raty-js) */
 .raty {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-/* Базовый стиль звезды */
+.raty img {
+  display: none;
+}
+
 .raty i {
   font-style: normal;
-  font-size: 22px; /* размер звезды */
+  font-size: 22px;
   line-height: 1;
   margin: 0 2px;
-  color: #ccc; /* цвет пустой звезды */
+  color: #ccc;
   cursor: default;
   transition: color 0.2s ease;
 }
 
-/* Активная (заполненная) звезда */
 .raty i.on {
-  color: #ffd54f; /* жёлтая */
+  color: #ffd54f;
 }
 
-/* Полузвезда */
 .raty i.half {
   position: relative;
   color: #ffd54f;
 }
 
-/* Чтобы полузвезда была наполовину закрашена */
 .raty i.half:before {
   content: '★';
   position: absolute;
