@@ -27,7 +27,6 @@ const showNotification = msg => {
 async function loadFeedbacks() {
   showLoader();
   try {
-    // Новый запрос на внешний API
     const res = await fetch(
       'https://sound-wave.b.goit.study/api/feedbacks?limit=10&page=1',
       {
@@ -42,10 +41,10 @@ async function loadFeedbacks() {
     const data = await res.json();
     hideLoader();
 
-    // Очищаем wrapper перед добавлением новых слайдов
+    // Очищаем wrapper
     wrapper.innerHTML = '';
 
-    // В API отзывы лежат в data.data
+    // Добавляем отзывы в слайды
     data.data.forEach(fb => {
       const roundedRating = Math.round(fb.rating);
 
@@ -76,6 +75,7 @@ function initSwiper() {
   if (swiperInstance) {
     swiperInstance.destroy(true, true);
   }
+
   swiperInstance = new Swiper('.feedback-swiper', {
     slidesPerView: 1,
     navigation: {
@@ -83,35 +83,42 @@ function initSwiper() {
       prevEl: '.swiper-button-prev',
     },
     on: {
+      init: function () {
+        createPagination(this.slides.length);
+        updatePagination(this);
+      },
       slideChange: function () {
         updatePagination(this);
       },
     },
   });
-  updatePagination(swiperInstance);
+}
+
+function createPagination(total) {
+  const container = document.querySelector('.custom-pagination');
+  container.innerHTML = '';
+
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    container.appendChild(dot);
+  }
 }
 
 function updatePagination(swiper) {
-  const total = swiper.slides.length;
-  const current = swiper.activeIndex + 1;
+  const dots = document.querySelectorAll('.custom-pagination .dot');
+  dots.forEach(dot => dot.classList.remove('active'));
 
-  document
-    .querySelectorAll('.custom-pagination .dot')
-    .forEach(dot => dot.classList.remove('active'));
-
-  if (current === 1) {
-    document.querySelector('.dot.first').classList.add('active');
-  } else if (current === total) {
-    document.querySelector('.dot.last').classList.add('active');
-  } else {
-    document.querySelector('.dot.middle').classList.add('active');
+  if (dots[swiper.activeIndex]) {
+    dots[swiper.activeIndex].classList.add('active');
   }
 }
 
 function initStars() {
   $('.star-rating').raty({
     readOnly: true,
-    starType: 'i', // вместо картинок используем <i>
+    starType: 'i',
     score: function () {
       return $(this).attr('data-score');
     },
