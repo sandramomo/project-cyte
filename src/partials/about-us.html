@@ -1,3 +1,28 @@
-<div class="container">
-<p>This is About us section</p>
+<div class="container aboutus">
+
+ <picture class="aboutus-picture">
+        <source
+          media="(max-width: 767px)"
+          srcset="/img/team_mobile_1x-min.jpg 1x, /img/team_mobile_2x-min.jpg 2x"
+        />
+        <source
+          media="(min-width: 768px) and (max-width: 1335px)"
+          srcset="/img/team_tablet_1x-min.jpg 1x, /img/team_tablet_2x-min.jpg 2x"
+        />
+        <source
+          media="(min-width: 1336px)"
+          srcset="/img/team-img1x-desktop.jpg 1x, /img/team-img2x-desktop.jpg 2x"
+        />
+        <img class="aboutus-img" src="/img/team-img1x-desktop.jpg" alt="team" />
+      </picture>
+
+<div class="aboutus-subscribe">
+  <svg class="aboutus-symbol" width="80" height="80" fill="white">
+    <use href="img/symbol-defs.svg#icon-logo-icon-1"></use>
+  </svg>
+  <h3 class="aboutus-title">About ArtistsHub</h3>
+  <p class="aboutus-text">At ArtistsHub, our mission is to connect music lovers with the artists they adore. 
+    We strive to create a vibrant community where discovering new music is as enjoyable as listening to it.</p>
+</div>
+
 </div>
