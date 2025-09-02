@@ -1,290 +1,238 @@
-/* === BASE RESET & GLOBAL === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* === RESET === */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  line-height:1.4;
+  background:#23132b;
+  color:#fff;
+  height:100vh;
+  overflow-x:hidden;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.4;
-  background-color: #23132b;
-  color: #fff;
-  height: 100vh;
-  overflow-x: hidden;
+/* === HERO (градиенты сверху/снизу) === */
+.hero{
+  position:relative;
+  width:100vw;
+  height: 800px;;
+  margin:0 auto;
+  background:#23132b; /* базовый фон */
+  overflow:hidden;
 }
-
-/* === HERO SECTION === */
-.hero {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  margin: 0 auto;
-  background: #23132b;
-  overflow: hidden;
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  height:200px;              /* высота сверху */
+  background:linear-gradient(to bottom,#060307 0%, #23132b00 100%);
+  background-repeat:no-repeat;
+  background-position:top;
+  background-size:100% 200px;
+  z-index:12;                /* по умолчанию обрезает фото */
+  pointer-events:none;
 }
-
-/* === GRADIENT OVER WHOLE SECTION === */
-.hero::before,
-.hero::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  pointer-events: none;
-  z-index: 30; /* поверх фото */
+/* один overlay с двумя градиентами — поверх фото, но под текстом */
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:20; /* под текстом */
+  pointer-events:none;
+  background:
+    linear-gradient(to bottom,#060307 0%, #23132b00 100%) top,
+    linear-gradient(to top,   #060307 0%, #23132b00 100%) bottom;
+  background-repeat:no-repeat;
+  background-size:100% 200px, 100% 200px; /* высота затемнения */
+  background-position:top, bottom;
 }
+.container.hero-tatil{ position:relative; z-index:30; }
+.hero-text{ position:relative; z-index:31; }
 
-.hero::before {
-  top: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(26, 11, 32, 1) 0%,
-    rgba(26, 11, 32, 0) 100%
-  );
-}
-
-.hero::after {
-  bottom: 0;
-  background: linear-gradient(
-    to top,
-    rgba(26, 11, 32, 1) 0%,
-    rgba(26, 11, 32, 0) 100%
-  );
-}
-
-/* === HERO CONTENT CONTAINER === */
-.container.hero-tatil {
-  position: relative;
-  z-index: 20; /* выше фото */
-  display: flex;
-  align-items: flex-start;
-  gap: 31px;
-  width: 100%;
-  padding: 0 64px 30px;
+/* === ROW CONTAINER === */
+.container.hero-tatil{
+  position:relative;
+  z-index:20;               /* текст выше overlay */
+  display:flex;
+  align-items:flex-start;
+  gap:31px;
+  width:100%;
+  padding:0 64px 30px;
 }
 
 /* === TEXT BLOCK === */
-.hero-text {
-  width: 640px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  padding-top: 100px;
+.hero-text{
+  width:640px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  padding-top:100px;        /* опускание блока по макету */
+}
+.hero-text h1{
+  font-size:84px;
+  font-weight:700;
+  line-height:92px;
+  margin-bottom:24px;
+  color:#fff;
+  max-width:640px;
+  width:100%;
 }
 
-.hero-text h1 {
-  font-size: 84px;
-  font-weight: 700;
-  line-height: 92px;
-  margin-bottom: 24px;
-  color: #fff;
-  max-width: 640px; /* 👈 h1 не шире 640 */
-  width: 100%; /* занимает всю доступную ширину до 640 */
+.hero-text p{
+  font-size:20px;
+  font-weight:400;
+  line-height:150%;
+  color:#ccc;
+  margin-bottom:32px;       /* отступ 32 до кнопки */
+  width:auto;
+  max-width:800px;          /* регулируй для нужных переносов на десктопе */
 }
-hero-text p {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 150%;
-  margin-bottom: 32px;
-  color: #cccccc;
-  width: auto;
-  max-width: min(
-    800px,
-    calc(
-      100% - var(--images-w) - var(--hero-gap) - var(--hero-gutter) -
-        var(--hero-gutter)
-    )
-  );
+.hero-btn{
+  width:206px;
+  height:47px;
+  padding:10px 24px;
+  font-size:18px;
+  font-weight:600;
+  background:#764191;
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  display:inline-flex;
+  gap:12px;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:filter .2s ease;
 }
-.hero-btn {
-  width: 206px;
-  height: 47px;
-  padding: 10px 24px;
-  font-size: 18px;
-  font-weight: 600;
-  background-color: #764191;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.3s ease;
-  margin-top: 32px;
-}
-.hero-btn:hover {
-  filter: brightness(0.85); /* затемнение на ~15% */
-}
+.hero-btn:hover{ filter:brightness(0.85); } /* затемнение */
 
-
-/* === IMAGES GRID === */
-.hero-images {
-  display: flex;
-  flex-shrink: 0;
-  width: 641px;
-  height: 100%;
-  gap: 17px;
-  margin-top: -10px; /* немного приподняли */
+/* === IMAGES GRID (2 колонки со смещением) === */
+.hero::before{
+    z-index:5; /* ниже фото/текста, только фон */
+  }
+  .hero::after{
+    background-size:100% 160px;
+  }
+.hero-images{
+  position:relative;
+  z-index:10;               /* под overlay градиента */
+  display:flex;
+  flex-shrink:0;
+  width:641px;
+  height:100%;
+  gap:17px;
+  margin-top:-10px;
 }
-
-.hero-col {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.hero-col{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.hero-col:nth-child(2){ margin-top:40px; } /* смещение правой колонки */
+.hero-img{
+  width:312px;
+  height:260px;
+  object-fit:cover;
+  border-radius:12px;
+  display:block;
 }
 
-.hero-col:nth-child(2) {
-  margin-top: 40px; /* смещение второго столбца */
-}
+/* ===== TABLET (768–1024) ===== */
+@media (max-width:1024px){
+  .hero{ height:auto; min-height:100vh; }
+  .hero::after{ background-size:100% 160px, 100% 160px; }
 
-.hero-img {
-  width: 312px;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-/* ===== TABLET (768–1024) — исправлено ===== */
-@media (max-width: 1024px) {
-  /* секция и градиенты */
-  .hero {
-    height: auto; /* контент задаёт высоту */
-    min-height: 100vh;
-    overflow: hidden; /* чтобы градиент обрезал фото */
-    position: relative;
-  }
-  .hero::before,
-  .hero::after {
-    height: 160px; /* чуть глубже, чтобы было видно */
-    z-index: 30; /* поверх фото */
-  }
-
-  .container.hero-tatil {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 24px;
-    padding: 32px;
-  }
-
-  .hero-text {
-    width: 100%; /* контейнер на всю строку */
-    max-width: none; /* не ограничиваем контейнер */
-    padding-top: 32px;
-    margin-bottom: 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* 👈 ключ: дети не растягиваются */
-  }
-
-  .hero-text h1 {
-    font-size: 48px;
-    line-height: 1.2;
-    margin-bottom: 32px;
-    max-width: 640px; /* заголовок до 640 */
-  }
-
-  .hero-text p {
-    font-size: 20px;
-    line-height: 1.5;
-    margin-bottom: 32px;
-    width: auto; /* 👈 убираем 100% */
-    max-width: 680px; /* параграф до 720 */
-    align-self: flex-start; /* на всякий случай, фикс для отдельных браузеров */
-  }
-  /* убираем жёсткие переносы на планшете */
-  .hero-text p br {
-    display: none;
-  }
-
-  .hero-btn {
-    width: auto;
-    height: 44px;
-    padding: 10px 20px;
-    font-size: 16px;
-    align-self: flex-start; /* кнопка выровнена влево */
-  }
-
-  .hero-images {
-    width: 100%;
-    gap: 16px;
-    margin-top: -24px;
-  }
-  .hero-col {
-    flex: 1 1 0;
-    gap: 16px;
-  }
-  .hero-col:nth-child(2) {
-    margin-top: 12px;
-  }
-  .hero-img {
-    width: 100%;
-    height: 220px;
-    border-radius: 14px;
-  }
-}
-/* ===== MOBILE (до 767px) — заголовок как в макете, фото в 2 столбика ===== */
-@media (max-width: 767px) {
   .container.hero-tatil{
-    flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
-    padding: 20px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:24px;
+    padding:32px;
   }
-
   .hero-text{
-    padding-top: 24px;
-    margin-bottom: 24px;
-    max-width: 100%;
-    align-items: flex-start;
+    width:100%;
+    max-width:none;
+    padding-top:32px;
+    margin-bottom:32px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
   }
-
-  /* Заголовок — крупнее и плотнее */
   .hero-text h1{
-    font-size: 48px;        /* было 32/36 — увеличили под макет */
-    line-height: 1.15;
-    letter-spacing: -0.2px;
-    margin-bottom: 20px;
-    max-width: 100%;
+    font-size:48px;
+    line-height:1.2;
+    margin-bottom:32px;
+    max-width:640px;
   }
-
-  /* p — не трогаем переносы/размеры, лишь позволяем занять всю ширину */
   .hero-text p{
-    max-width: 100%;
-    margin-bottom: 24px;    /* отступ до кнопки */
+    font-size:20px;
+    line-height:1.5;
+    margin-bottom:32px;
+    max-width:624px;  
   }
+  .hero-text p br{ display:none; }
 
   .hero-btn{
-    width: 100%;
-    height: 44px;
-    font-size: 16px;
-    justify-content: center;
+    width:auto;
+    height:44px;
+    padding:10px 20px;
+    font-size:16px;
+    align-self:flex-start;
   }
 
-  /* Фото в две колонки */
   .hero-images{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    margin-top: 0;
+    width:100%;
+    gap:16px;
+    margin-top:-24px;  /* верхний ряд под overlay */
   }
-  /* “расплющиваем” внутренние колонки в сетку */
-  .hero-col{ display: contents; }
-  .hero-col:nth-child(2){ margin-top: 0; }
+  .hero-col{ flex:1 1 0; gap:16px; }
+  .hero-col:nth-child(2){ margin-top:12px; }
+  .hero-img{ width:100%; height:220px; border-radius:14px; }
+}
 
-  .hero-img{
-    width: 100%;
-    aspect-ratio: 1 / 1;    /* квадраты; можно 3/4 если нужно */
-    height: auto;
-    object-fit: cover;
-    border-radius: 12px;
+/* ===== MOBILE (до 767px) — 2 столбика фото ===== */
+@media (max-width:767px){
+  .container.hero-tatil{
+    flex-direction:column;
+    align-items:stretch;
+    gap:20px;
+    padding:20px;
+  }
+  .hero-text
+  { 
+    padding-top:24px; 
+    margin-bottom:24px;
+     max-width:100%;
+  }
+  .hero-text h1
+  { font-size:40px;
+    line-height:1.15;
+    margin-bottom:20px; 
+    max-width:100%;
+   }
+  .hero-text 
+  p{ 
+    max-width:100%;
+     margin-bottom:24px;
+     }
+
+  .hero-btn{
+    width:100%;
+    height:44px;
+    font-size:16px;
+    justify-content:center;
   }
 
-  /* слегка уменьшим глубину градиента на мобилке */
-  .hero::before,
-  .hero::after{ height: 120px; }
+  /* Фото в 2 колонки на мобилке */
+  .hero-images{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:12px;
+    margin-top:0;
+    z-index:10;
+  }
+  .hero-col{ display:contents; }
+  .hero-col:nth-child(2){ margin-top:0; }
+  .hero-img{ width:100%; aspect-ratio:1/1; height:auto; border-radius:12px; }
+
+  .hero::after{ background-size:100% 120px, 100% 120px; }
 }
