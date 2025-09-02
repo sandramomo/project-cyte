@@ -11,10 +11,10 @@ body {
 .header {
   background-color: #060307;
    position: fixed;
-  z-index: 1002;
+  z-index: 992;
 }
 
-.container {
+.header-container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 20px;
@@ -23,7 +23,7 @@ body {
   align-items: center;
   height: 60px;
   position: relative;
-  z-index: 1002;
+  z-index: 992;
 }
 
 logo-wrapper {
@@ -37,7 +37,7 @@ logo-wrapper {
   font-weight: bold;
   color: #fff;
   text-decoration: none;
-  z-index: 1003; 
+  z-index: 993; 
   position: relative;
   padding-left: 10px;
 }
@@ -62,7 +62,7 @@ logo-wrapper {
   cursor: pointer;
   gap: 4px;
   padding-right: 8px;
-  z-index: 1001; 
+  z-index: 991; 
   position: relative;
 }
 
@@ -95,7 +95,7 @@ logo-wrapper {
   width: 100vw;
   height: 100vh;
   background-color: #060307;
-  z-index: 1000;
+  z-index: 900;
   flex-direction: column;
   align-items: center;
   margin-top: 39px;
@@ -121,7 +121,7 @@ line-height: 1.5;
    border-bottom: none !important;
   cursor: pointer; 
   position: relative;
-  z-index: 1002;
+  z-index: 992;
   
 }
 
@@ -167,6 +167,11 @@ line-height: 1.5;
  
   }
 
+  .logo {
+
+  padding-left: 32px;
+}
+
   .nav-list {
     display: flex;
     flex-direction: row;
@@ -185,7 +190,7 @@ line-height: 1.5;
     line-height: 1.5;
   }
 
-  .container {
+  .header-container {
     padding: 0 64px;
   }
 }
@@ -202,11 +207,16 @@ line-height: 1.5;
   }
 
 
-.container {
-    padding: 0 32px;
+.header-container {
+    padding: 0 64px;
 }
 
 .nav {
 padding-right: 0px;
+}
+
+ .logo {
+
+  padding-left: 0px;
 }
 }
