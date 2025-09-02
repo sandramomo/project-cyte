@@ -1,12 +1,10 @@
-export function initScrollToArtists() {
-  const btn = document.querySelector(".hero-btn-js");
-  const target = document.getElementById("artists");
+export function initHeroScroll() {
+  const scrollButton = document.querySelector('.hero-btn-js');
+  const targetSection = document.getElementById('artists');
 
-  if (btn && target) {
-    btn.addEventListener("click", function () {
-      target.scrollIntoView({
-        behavior: "smooth"
-      });
+  if (scrollButton && targetSection) {
+    scrollButton.addEventListener('click', function () {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
     });
   }
 }
