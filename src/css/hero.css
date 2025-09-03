@@ -1,4 +1,4 @@
-кака на таблет и телефоне опустить картинки 
+
 /* === RESET === */
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
@@ -11,52 +11,64 @@ body{
 }
 
 /* === HERO (градиенты сверху/снизу) === */
-.hero{
-  position:relative;
-  width:100vw;
-  height: 800px;;
-  margin:0 auto;
-  background:#23132b; /* базовый фон */
-  overflow:hidden;
+.hero {
+ position: relative;
+ width: 100%;
+ margin: 0 auto;
+ background: #23132b;
+ padding: 40px 0; 
+  display: flex;
+  align-items: center;
+  min-height: 100vh; 
 }
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  height:200px;              /* высота сверху */
-  background:linear-gradient(to bottom,#060307 0%, #23132b00 100%);
-  background-repeat:no-repeat;
-  background-position:top;
-  background-size:100% 200px;
-  z-index:12;                /* по умолчанию обрезает фото */
-  pointer-events:none;
+.container.hero-tatil::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, #060307 0%, #23132b00 100%);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100% 200px;
+  z-index: 20; /* Змінено для правильного порядку шарів */
+  pointer-events: none;
 }
-/* один overlay с двумя градиентами — поверх фото, но под текстом */
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:20; /* под текстом */
-  pointer-events:none;
+.container.hero-tatil::after {
+  content: "";
+  position: absolute;
+  /* Змінюємо inset: 0; на конкретні значення */
+  top: 0;
+  bottom: 0;
+  left: 50%; /* Ставимо по центру екрана */
+  transform: translateX(-50%); /* Компенсуємо зсув, щоб ідеально центрувати */
+  width: 100vw; /* Розтягуємо на всю ширину вікна */
+  
+  z-index: 20; /* Важливо: градієнт має бути вище фото */
+  pointer-events: none;
   background:
-    linear-gradient(to bottom,#060307 0%, #23132b00 100%) top,
+    linear-gradient(to bottom, #060307 0%, #23132b00 100%) top,
     linear-gradient(to top,   #060307 0%, #23132b00 100%) bottom;
-  background-repeat:no-repeat;
-  background-size:100% 200px, 100% 200px; /* высота затемнения */
-  background-position:top, bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 200px, 100% 200px; /* Збільшимо висоту градієнта */
+  background-position: top, bottom;
 }
+
 .container.hero-tatil{ position:relative; z-index:30; }
 .hero-text{ position:relative; z-index:31; }
 
+
 /* === ROW CONTAINER === */
-.container.hero-tatil{
-  position:relative;
-  z-index:20;               /* текст выше overlay */
-  display:flex;
-  align-items:flex-start;
-  gap:31px;
-  width:100%;
-  padding:0 64px 30px;
+.container.hero-tatil {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: flex-start;
+  gap: 31px;
+  width: 100%;
+  max-width: 1400px; /* Обмежуємо ширину, щоб не розтягувалось */
+  margin: 0 auto;     /* Центруємо сам контейнер */
+  /* Повертаємо відступ зверху, як було в макеті */
+  padding: 120px 64px 60px; 
 }
 
 /* === TEXT BLOCK === */
@@ -65,7 +77,7 @@ body{
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
-  padding-top:100px;        /* опускание блока по макету */
+  
 }
 .hero-text h1{
   font-size:84px;
@@ -82,9 +94,9 @@ body{
   font-weight:400;
   line-height:150%;
   color:#ccc;
-  margin-bottom:32px;       /* отступ 32 до кнопки */
+  margin-bottom:32px;       
   width:auto;
-  max-width:800px;          /* регулируй для нужных переносов на десктопе */
+  max-width:800px;          
 }
 .hero-btn{
   width:206px;
@@ -113,15 +125,15 @@ body{
   .hero::after{
     background-size:100% 160px;
   }
-.hero-images{
-  position:relative;
-  z-index:10;               /* под overlay градиента */
-  display:flex;
-  flex-shrink:0;
-  width:641px;
-  height:100%;
-  gap:17px;
-  margin-top:-10px;
+.hero-images {
+  position: relative;
+  z-index: 10; /* Це ставить фото ПІД градієнт */
+  display: flex;
+  flex-shrink: 0;
+  width: 641px;
+  height: 100%;
+  gap: 17px;
+  margin-top: -10px;
 }
 .hero-col{
   display:flex;
