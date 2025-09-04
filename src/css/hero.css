@@ -1,150 +1,245 @@
-* {
-  box-sizing: border-box;
-}
-/* Секция Hero */
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===== Hero section ===== */
 .hero {
-  background: linear-gradient(to bottom, #060307 0%, #23132b00 100%) top,
-    linear-gradient(to top, #060307 0%, #23132b00 100%) bottom, #23132B;
-  background-repeat: no-repeat;
-  background-size: 100% 80px, 100% 80px, cover;
-  background-position: top, bottom, center;
-  width: 100%;
-  padding: 64px 16px;
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  justify-content: center;
+  position: relative;
+  background: #23132B;
+  overflow: hidden; /* ничего не вылезает за секцию */
 }
-/* Контейнер Hero (текст слева, фото справа) */
-.hero-tatil {
+
+/* Градиенты секции сверху/снизу */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 200px;
+  pointer-events: none;
+  z-index: 2;
+}
+.hero::before { top: 0; background: linear-gradient(to bottom, #060307 0%, rgba(35,19,43,0) 100%); }
+.hero::after  { bottom: 0; background: linear-gradient(to top,    #060307 0%, rgba(35,19,43,0) 100%); }
+
+/* Внутренний контейнер: боковые отступы и зазор между блоками */
+.hero-settings {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 64px;   /* отступ только слева */
+  padding-right: 0;     /* убрали правый отступ */
+  gap: 250px;            /* это расстояние между текстом и картинками */
+}
+
+/* Левая колонка (текст) */
+.hero-left-items {
+  flex: 0 0 auto;
+  max-width: 1000px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Правая колонка (картинки) */
+.hero-right,
+.hero-raight {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Колонки картинок */
+.hero-foto-col1,
+.hero-foto-col2 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  gap: 18px;
 }
-/* Заголовок */
-.hero-tatil h1 {
-  margin-bottom: 24px;
-  font-family: 'Epilogue', sans-serif;
-  font-weight: 700;
-  font-size: 48px;
-  line-height: 110%;
+.hero-foto-col2 { margin-top: 35px; }
+
+/* Карточка picture */
+.hero-right picture,
+.hero-raight picture {
+  display: block;
+  width: 312px;
+  height: 340px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Картинка */
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ===== Типографика и кнопка ===== */
+.hero-left-items h1 {
+  font: 700 84px/110% 'Epilogue', sans-serif;
   letter-spacing: -0.01em;
   color: #fff;
+  margin: 215px 0 24px 0;
 }
-/* Подзаголовок */
-.hero-tatil p {
-  margin-bottom: 32px;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 150%;
+.hero-left-items p {
+  font: 400 20px/150% 'IBM Plex Sans', sans-serif;
   color: #fff;
+  margin-bottom: 32px;
 }
-/* Кнопка Hero */
-.hero-btn {
-  scroll-behavior: smooth;
+.hero-left-items button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 15px 24px;
-  border-radius: 12px;
-  font-size: 18px;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 500;
-  background-color: #764191;
-  color: #FFFFFF;
+  padding: 10px 24px;
+  width: 206px;
+  height: 47px;
   border: none;
+  border-radius: 12px;
+  font: 500 18px/1 'IBM Plex Sans', sans-serif;
+  color: #fff;
+  background: #764191;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-bottom: 64px;
+  transition: background-color .3s ease, transform .2s ease;
+  white-space: nowrap;
 }
-.hero-btn:hover { background-color: #5D3373; }
-.hero-btn:active { transform: translateY(0); }
-.hero-btn svg { flex-shrink: 0; width: 24px; height: 24px; fill: #fff; }
-
-/* === БАЗА (мобилка) ====================================== */
-.hero-images-group {
-  max-width: 130px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;             /* вертикальный отступ между рядами */
-}
-.hero-images {
-  display: block;            /* на мобилке — по одному в строке */
-}
-.hero-images img {
-  display: block;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 16px;
-}
-.hero-images img + img {     /* отступ между картинками внутри ряда на мобилке */
-  margin-top: 16px;
-}
-
-/* Сетка артистов ниже (если используешь) */
-.artists { margin-top: 64px; }
-.artist {
-  width: 100%;
-  border-radius: 16px;
-  background-size: cover;
-  background-position: center;
-}
-
-/* === ПЛАНШЕТ (>=768px) =================================== */
-@media (min-width: 768px){
-  .hero-images-group {
-    max-width: fit-content;
-    max-height: 632px;
-    overflow: hidden;
-  }
-  .hero-images {
-    display: flex;           /* 2 в ряд */
-    column-gap: 16px;        /* горизонтальный отступ внутри ряда */
-  }
-  .hero-images img + img {
-    margin-top: 0;           /* убираем мобильный вертикальный внутри ряда */
-  }
-}
-
-/* === ДЕСКТОП (>=1440px) ================================== */
-@media (min-width: 1440px) {
-  .hero-tatil {
-    flex-direction: row;     /* текст слева, картинки справа */
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
-  }
-  .hero-images-group {
-    max-height: 100%;
+.hero-left-items button:hover { background: #5D3373; }
+.hero-left-items button:active { transform: translateY(0); }
+/* ===== Планшет: блок фото ровно 704x632 ===== */
+@media (min-width: 768px) and (max-width: 1335px) {
+  /* Контент сверху как у тебя */
+  .hero-settings{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 32px;
+    gap: 32px;
   }
 
-  /* 2×3 «шахматка»: отступ 16px внутри колонок и между колонками */
-  .hero-images-group{
-    display: grid;                 /* превращаем в грид-плитку */
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    row-gap: 16px;                 /* вертикаль внутри колонок */
-    column-gap: 16px;              /* горизонталь между колонками */
-    width: 320px;
-    height: 400px;
-    max-width: 320px;
+  /* Блок с фото: фиксируем общий размер 704x632 */
+  .hero-raight,
+  .hero-right{
+    width: 704px;
+    height: 632px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;              /* колоночный зазор = 80 */
+    padding: 0;
+    overflow: hidden;       /* на всякий случай */
   }
-  .hero-images{ display: contents; } /* flatten рядов, чтобы <img> стали плитками */
 
-  .hero-images img{
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
+  /* Колонки — строго по 312 шириной, межстрочный зазор 16 */
+  .hero-foto-col1,
+  .hero-foto-col2{
+    width: 312px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;              /* row-gap = 16 */
+    margin-top: 0;          /* убираем шахматный сдвиг на планшете */
+  }
+
+  /* Карточки в колонках: 312x200 */
+  .hero-foto-col1 picture,
+  .hero-foto-col2 picture{
+    width: 312px;
+    height: 200px;
     border-radius: 16px;
+    overflow: hidden;
+    display: block;
   }
 
-  /* порядок «шахматкой»: [1,2] / [2,1] / [1,2] */
-  .hero-images-group img:nth-child(1){ grid-row:1; grid-column:1; }
-  .hero-images-group img:nth-child(2){ grid-row:1; grid-column:2; }
-  .hero-images-group img:nth-child(3){ grid-row:2; grid-column:2; }
-  .hero-images-group img:nth-child(4){ grid-row:2; grid-column:1; }
-  .hero-images-group img:nth-child(5){ grid-row:3; grid-column:1; }
-  .hero-images-group img:nth-child(6){ grid-row:3; grid-column:2; }
+  .hero-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Заголовок в 2 строки */
+  .hero-left-items{
+    max-width: 700px;
+  }
+  .hero-left-items h1{
+    font-size: 56px;
+    line-height: 1.1;
+    margin-top: 80px;
+    max-width: 620px;  /* подбирает перенос на 2 строки */
+    text-align: left;
+  }
+  .hero-left-items h1 br{ display:none; }
+}
+/* ===== Мобилка ≤767px ===== */
+@media (max-width: 767px) {
+  .hero-settings{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 16px;      /* боковые отступы как на макете */
+    gap: 24px;            /* зазор между текстом и сеткой фото */
+  }
+
+  .hero-left-items{
+    max-width: 100%;
+  }
+
+  .hero-left-items h1{
+    font-size: 48px;
+    line-height: 1.1;
+    margin-top: 48px;
+    max-width: none;      /* пусть ломается естественно */
+    text-align: left;
+  }
+  .hero-left-items h1 br{ display:none; }
+
+  .hero-left-items p{
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .hero-left-items button{
+    width: 100%;          /* кнопка на всю ширину */
+    height: 48px;
+    padding: 12px 16px;
+  }
+
+  /* Блок с фото превращаем в сетку 2 колонки */
+  .hero-right,
+  .hero-raight{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;                         /* расстояния как на скрине */
+    padding: 0;
+    justify-items: stretch;
+  }
+
+  /* убираем влияние внутренних колонок */
+  .hero-foto-col1,
+  .hero-foto-col2{
+    display: contents;
+    gap: 0;
+    margin: 0;
+  }
+
+  /* карточки-картинки: квадрат, скругления */
+  .hero-right picture,
+  .hero-raight picture{
+    width: 100%;
+    aspect-ratio: 1 / 1;              /* квадрат */
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+  }
+
+  .hero-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
