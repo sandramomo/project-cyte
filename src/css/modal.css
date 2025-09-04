@@ -189,6 +189,7 @@ tbody tr:nth-child(odd) {
     width: calc(146 * 2) - 48px;
   }
   .albums-list-js {
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 32px;
