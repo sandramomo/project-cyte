@@ -5,42 +5,38 @@
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project cyte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Sans:wght@100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="iziToast.min.css" />
   </head>
   <body>
-    <header>
+    <header id="header-section">
       <load src="./partials/header.html" />
     </header>
 
     <main>
-      <section>
+      <section id="hero-section">
         <load src="./partials/hero.html" />
       </section>
-      <section>
+      <section id="artists-section">
         <load src="./partials/artists.html" />
       </section>
-      <section>
+      <section id="about-us-section">
         <load src="./partials/about-us.html" />
       </section>
-      <section>
+      <section id="feedback-section">
         <load src="./partials/feedback.html" />
       </section>
-      <section>
-        <load src="./partials/modal.html" />
-      </section>
     </main>
-    <footer>
+    <footer id="footer-section">
       <load src="./partials/footer.html" />
     </footer>
-
+    <load src="./partials/modal.html" />
     <script type="module" src="./main.js"></script>
   </body>
 </html>
