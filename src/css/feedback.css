@@ -1,256 +1,254 @@
 :root {
-    --bg: #0c0c10;
-    --text: #eaeaf2;
-    --muted: #a4a4b5;
-    --accent: #8a5cf6;
+  --bg: #0c0c10;
+  --text: #eaeaf2;
+  --muted: #a4a4b5;
+  --accent: #8a5cf6;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    font-family: 'IBM Plex Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .visually-hidden {
-    position: absolute !important;
-    clip: rect(1px, 1px, 1px, 1px);
-    padding: 0;
-    border: 0;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
 }
 
 /* секція */
 .feedbacks {
-    position: relative;
-    padding: 56px 16px 112px;
-    max-width: 1280px;
-    margin: 0 auto;
-    overflow: hidden;
+  position: relative;
+  padding: 56px 16px 112px;
+  max-width: 1280px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 5;
-    appearance: none;
-    border: 1px solid rgba(255, 255, 255, .08);
-    background: #1a1a22;
-    color: var(--text);
-    padding: 10px;
-    border-radius: 12px;
-    cursor: pointer;
-    line-height: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #1a1a22;
+  color: var(--text);
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  line-height: 0;
 }
 
 .btn--prev {
-    left: 16px;
+  left: 16px;
 }
 
 .btn--next {
-    right: 16px;
+  right: 16px;
 }
 
 /* swiper area */
 .swiper {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .swiper-slide {
-    display: grid;
-    place-items: center;
-    padding: 8px;
-    width: 100% !important;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  width: 100% !important;
 }
 
 .card {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    padding: 0;
-    display: grid;
-    justify-items: center;
-    text-align: center;
-    gap: 16px;
-    max-width: 920px;
-    margin: 0 auto;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 16px;
+  max-width: 920px;
+  margin: 0 auto;
 }
 
 .card__stars {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card__stars .raty {
-    display: inline-flex !important;
-    flex-direction: row !important;
-    align-items: center;
-    gap: 6px !important;
-    white-space: nowrap;
-    line-height: 1;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 6px !important;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .raty img {
-    width: 20px;
-    height: 20px;
-    display: inline-block !important;
-    vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  display: inline-block !important;
+  vertical-align: middle;
 }
 
 .stars {
-    display: inline-flex;
-    gap: 6px;
+  display: inline-flex;
+  gap: 6px;
 }
 
 .star {
-    font-size: 18px;
-    line-height: 1;
-    opacity: .3;
-    color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  opacity: 0.3;
+  color: var(--text);
 }
 
 .star--on {
-    opacity: 1;
-    color: var(--accent);
+  opacity: 1;
+  color: var(--accent);
 }
 
 /* ===== TEXTS ===== */
 .card__text {
-    font-family: "Epilogue", sans-serif;
-    font-weight: 700;
-    font-style: Bold;
-    font-size: 32px;
-    line-height: 130%;
-    letter-spacing: -1%;
-    max-width: 920px;
-
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 130%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #fff;
+  max-width: 920px;
 }
 
 .card__user {
-    display: grid;
-    justify-items: center;
-    gap: 6px;
-    margin-top: 4px;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  margin-top: 4px;
 }
 
 .name {
-    font-family: "IBM Plex Sans", sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 150%;
-    letter-spacing: 0%;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 150%;
 }
 
 .muted {
-    color: var(--muted);
-    font-size: 14px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .avatar {
-    display: none;
+  display: none;
 }
 
 .dots {
-    position: absolute;
-    left: 50%;
-    bottom: 32px;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0;
 }
 
 .dot {
-    width: 8px;
-    height: 8px;
-    background: #3b3b49;
-    border-radius: 50%;
-    opacity: .6;
-    transition: opacity .2s, transform .2s, background .2s;
+  width: 8px;
+  height: 8px;
+  background: #3b3b49;
+  border-radius: 50%;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s, background 0.2s;
 }
 
 .dot--active {
-    opacity: 1;
-    background: #ffffff;
-    /* біла активна */
-    transform: scale(1.25);
-    box-shadow: 0 0 0 6px rgba(138, 92, 246, .15);
+  opacity: 1;
+  background: #ffffff;
+  /* біла активна */
+  transform: scale(1.25);
+  box-shadow: 0 0 0 6px rgba(138, 92, 246, 0.15);
 }
 
 .card__user .muted {
-    display: none;
+  display: none;
 }
 
-
 @media (max-width: 767.98px) {
-    .btn {
-        display: none !important;
-    }
+  .btn {
+    display: none !important;
+  }
 
-    /* стрілки ховаємо на мобілці */
+  /* стрілки ховаємо на мобілці */
 
-    .feedbacks {
-        width: 100%;
-        max-width: 320px;
-        padding: 64px 16px 64px 16px;
-    }
+  .feedbacks {
+    width: 100%;
+    max-width: 320px;
+    padding: 64px 16px 64px 16px;
+  }
 
-    .card {
-        padding-inline: 12px;
-    }
+  .card {
+    padding-inline: 12px;
+  }
 
-    .dots {
-        bottom: 16px;
-    }
+  .dots {
+    bottom: 16px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023.98px) {
-    .btn--prev {
-            left: 32px;
-        }
-    
-        .btn--next {
-            right: 32px;
-        }
-    .feedbacks {
-        max-width: 768px;
-        padding: 64px 32px 64px 32px;
-    }
+  .btn--prev {
+    left: 32px;
+  }
 
-    .dots {
-        bottom: 32px;
-    }
+  .btn--next {
+    right: 32px;
+  }
+  .feedbacks {
+    max-width: 768px;
+    padding: 64px 32px 64px 32px;
+  }
+
+  .dots {
+    bottom: 32px;
+  }
 }
 
 /* Desktop+ */
 @media (min-width: 1024px) {
-    .btn--prev {
-            left: 64px;
-        }
-    .btn--next {
-            right: 64px;
-        }
-    .feedbacks {
-        max-width: 1440px;
-        padding: 112px 64px 112px 64px;
-    }
-    .dots {
-        bottom: 64px;
-    }
+  .btn--prev {
+    left: 64px;
+  }
+  .btn--next {
+    right: 64px;
+  }
+  .feedbacks {
+    max-width: 1440px;
+    padding: 112px 64px 112px 64px;
+  }
+  .dots {
+    bottom: 64px;
+  }
 }
 
 #feedbacks .card__stars img {
-    display: inline-block !important;
+  display: inline-block !important;
 }
