@@ -5,15 +5,19 @@
 }
 
 body {
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
-
-.header {
+header {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  z-index: 996; 
   background-color: #060307;
-   position: fixed;
-  z-index: 992;
 }
-
+main {
+  padding-top: 80px; 
+}
 .header-container {
   max-width: 1440px;
   margin: 0 auto;
@@ -37,7 +41,7 @@ logo-wrapper {
   font-weight: bold;
   color: #fff;
   text-decoration: none;
-  z-index: 993; 
+  z-index: 993;
   position: relative;
   padding-left: 10px;
 }
@@ -62,7 +66,7 @@ logo-wrapper {
   cursor: pointer;
   gap: 4px;
   padding-right: 8px;
-  z-index: 991; 
+  z-index: 991;
   position: relative;
 }
 
@@ -107,24 +111,23 @@ logo-wrapper {
   gap: 32px;
   list-style: none;
   text-align: center;
- }
+}
 
 .nav-list a {
   color: #fff;
- font-weight: 500;
-font-size: 26px;
-line-height: 1.5;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.5;
   text-decoration: none !important;
-   border-bottom: none !important;
-  cursor: pointer; 
+  border-bottom: none !important;
+  cursor: pointer;
   position: relative;
   z-index: 992;
-  }
+}
 
 .menu-toggle:checked ~ .nav {
   display: flex;
 }
-
 
 .menu-toggle:checked ~ .burger span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
@@ -149,19 +152,19 @@ line-height: 1.5;
   .nav {
     display: flex !important;
     position: static;
-      height: auto;
+    height: auto;
     width: auto;
     flex-direction: row;
     justify-content: flex-end;
     background: none;
     padding-top: 0;
-     margin-top: 0;
-     padding-right: 32px;
-   }
+    margin-top: 0;
+    padding-right: 32px;
+  }
 
   .logo {
-  padding-left: 32px;
-}
+    padding-left: 32px;
+  }
 
   .nav-list {
     display: flex;
@@ -195,15 +198,15 @@ line-height: 1.5;
     gap: 32px;
   }
 
-.header-container {
+  .header-container {
     padding: 0 64px;
-}
+  }
 
-.nav {
-padding-right: 0px;
-}
+  .nav {
+    padding-right: 0px;
+  }
 
- .logo {
-  padding-left: 0px;
-}
+  .logo {
+    padding-left: 0px;
+  }
 }
