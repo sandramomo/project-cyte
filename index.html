@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="iziToast.min.css" />
     <script type="module" crossorigin src="/project-cyte/index.js"></script>
     <link rel="modulepreload" crossorigin href="/project-cyte/assets/vendor-CCIwLLD6.js">
-    <link rel="stylesheet" crossorigin href="/project-cyte/assets/index-VoLSaI1p.css">
+    <link rel="stylesheet" crossorigin href="/project-cyte/assets/index-C_V4ynxr.css">
   </head>
   <body>
     <header id="header-section">
@@ -239,9 +239,51 @@
 
       </section>
       <section id="feedback-section">
-        <div class="container">
-<p>This is feedback section</p>
-</div>
+        <!doctype html>
+<html lang="uk">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feedbacks Section</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/raty/3.1.1/jquery.raty.css" />
+    <link rel="stylesheet" href="./feedback.css" />
+</head>
+
+<body>
+    <section class="feedbacks" id="feedbacks">
+        <h2 class="visually-hidden">Feedbacks our visitors</h2>
+        <button class="btn btn--prev" id="prevBtn" aria-label="Previous feedback" title="Previous">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </button>
+        <button class="btn btn--next" id="nextBtn" aria-label="Next feedback" title="Next">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </button>
+        <div class="swiper" id="feedbacks-swiper">
+            <div class="swiper-wrapper" id="slides"></div>
+        </div>
+        <div class="dots" aria-label="Feedbacks pagination" role="tablist">
+            <span class="dot" data-kind="first" role="tab" aria-selected="false"></span>
+            <span class="dot" data-kind="middle" role="tab" aria-selected="false"></span>
+            <span class="dot" data-kind="last" role="tab" aria-selected="false"></span>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.1.1/jquery.raty.min.js"></script>
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/feedback.js"></script>
+</body>
+
+</html>
       </section>
     </main>
     <footer id="footer-section">
