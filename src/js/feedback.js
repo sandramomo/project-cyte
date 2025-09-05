@@ -1,177 +1,135 @@
-import Swiper from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+const API_URL = 'https://sound-wave.b.goit.study/api/feedbacks';
+const TAKE = 10;
 
-import { register } from 'swiper/element/bundle';
-register();
 
-import $ from 'jquery';
-import 'raty-js';
+const $slidesWrapper = document.getElementById('slides');
+const $prev = document.getElementById('prevBtn');
+const $next = document.getElementById('nextBtn');
+const $dotFirst = document.querySelector('.dot[data-kind="first"]');
+const $dotMiddle = document.querySelector('.dot[data-kind="middle"]');
+const $dotLast = document.querySelector('.dot[data-kind="last"]');
 
-// --- Логика отзывов ---
-const loader = document.getElementById('loader');
-const notification = document.getElementById('feedback');
-const wrapper = document.querySelector('.feedback-swiper .swiper-wrapper');
 
-const showLoader = () => (loader.style.display = 'block');
-const hideLoader = () => (loader.style.display = 'none');
+const roundRating = (num) => Math.round(Number(num) || 0);
 
-const showNotification = msg => {
-  if (notification) {
-    notification.innerText = msg;
-    notification.style.display = 'block';
-    setTimeout(() => (notification.style.display = 'none'), 3000);
-  }
-};
 
-async function loadFeedbacks() {
-  showLoader();
-  try {
-    const res = await fetch(
-      'https://sound-wave.b.goit.study/api/feedbacks?limit=10&page=1',
-      {
-        headers: {
-          Accept: 'application/json',
-        },
-      }
-    );
-
-    if (!res.ok) throw new Error('Помилка завантаження відгуків');
-
-    const data = await res.json();
-    hideLoader();
-
-    if (wrapper) {
-      wrapper.innerHTML = '';
-
-      data.data.forEach(fb => {
-        const roundedRating = Math.round(fb.rating);
-
-        const slide = document.createElement('div');
-        slide.classList.add('swiper-slide');
-
-        slide.innerHTML = `
-          <div class="feedback-card">
-            <div class="star-rating" data-score="${roundedRating}"></div>
-            <p class="feedback-text">${fb.descr}</p>
-            <p class="feedback-user">— ${fb.name}</p>
-          </div>
-        `;
-        wrapper.appendChild(slide);
-      });
+function escapeHTML(str) {
+return String(str || '')
+.replace(/&/g, '&amp;')
+.replace(/</g, '&lt;')
+.replace(/>/g, '&gt;')
+.replace(/\"/g, '&quot;')
+.replace(/'/g, '&#039;');
     }
 
-    initSwiper();
-    initStars();
-  } catch (err) {
-    hideLoader();
-    showNotification(err.message);
-  }
+function createStarsHTML(score) {
+const s = Math.max(0, Math.min(5, Number(score) || 0));
+let html = '<span class="stars" aria-hidden="true">';
+for (let i = 1; i <= 5; i += 1) html += `<span class="star${i <= s ? ' star--on' : ''}">★</span>`;
+html += '</span>';
+return html;
 }
 
-let swiperInstance = null;
 
-function initSwiper() {
-  if (swiperInstance) {
-    swiperInstance.destroy(true, true);
-  }
+function createSlide(item) {
+const slide = document.createElement('div');
+slide.className = 'swiper-slide';
 
-  swiperInstance = new Swiper('.feedback-swiper', {
-    slidesPerView: 1,
-    slidesPerGroup: 1,
-    loop: false,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    // Добавлены брейкпоинты для управления навигацией
-    breakpoints: {
-      0: {
-        navigation: {
-          enabled: false, // Отключаем навигацию на мобильных
-        },
-      },
-      769: {
-        // На экранах шире 768px
-        navigation: {
-          enabled: true, // Включаем навигацию
-        },
-      },
-    },
-    on: {
-      init: function () {
-        createPagination();
-        updatePagination(this);
-      },
-      slideChange: function () {
-        updatePagination(this);
-      },
-    },
-  });
+
+const rounded = roundRating(item.rating);
+const username = item.name || item.author || item.user?.name || 'Anonymous';
+const text = item.descr || item.comment || item.text || item.content || item.message || '';
+
+
+slide.innerHTML = `
+<article class="card" aria-label="Visitor feedback">
+<div class="card__stars" data-score="${rounded}">
+<div class="js-stars"></div>
+</div>
+<p class="card__text">“${escapeHTML(text)}”</p>
+<div class="card__user">
+<div class="name">${escapeHTML(username)}</div>
+<div class="muted">Verified visitor</div>
+</div>
+</article>`;
+return slide;
+    }
+function updateDots(swiper) {
+const total = swiper.slides.length;
+const idx = swiper.activeIndex;
+const isFirst = idx === 0;
+const isLast = idx === total - 1;
+
+
+[$dotFirst, $dotMiddle, $dotLast].forEach((el) => { el.classList.remove('dot--active'); el.setAttribute('aria-selected', 'false'); });
+if (isFirst) { $dotFirst.classList.add('dot--active'); $dotFirst.setAttribute('aria-selected', 'true'); }
+else if (isLast) { $dotLast.classList.add('dot--active'); $dotLast.setAttribute('aria-selected', 'true'); }
+else { $dotMiddle.classList.add('dot--active'); $dotMiddle.setAttribute('aria-selected', 'true'); }
 }
 
-function createPagination() {
-  const container = document.querySelector('.custom-pagination');
-  if (!container) return;
-  container.innerHTML = '';
 
-  for (let i = 0; i < 3; i++) {
-    const dot = document.createElement('span');
-    dot.classList.add('dot');
-    dot.dataset.index = i;
-    if (i === 0) dot.classList.add('active');
-
-    dot.addEventListener('click', () => {
-      let slideIndex;
-      if (dot.dataset.index == 0) {
-        slideIndex = 0;
-      } else if (dot.dataset.index == 1) {
-        slideIndex = 3;
-      } else if (dot.dataset.index == 2) {
-        slideIndex = 6;
-      }
-      if (swiperInstance) {
-        swiperInstance.slideTo(slideIndex);
-      }
-    });
-
-    container.appendChild(dot);
-  }
+function buildStarUrl(fill) {
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="${fill}" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
+return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
 }
 
-function updatePagination(swiper) {
-  const dots = document.querySelectorAll('.custom-pagination .dot');
-  if (dots.length === 0) return;
 
-  dots.forEach(dot => dot.classList.remove('active'));
+function initRaty($root) {
+const $ = window.jQuery;
+if (!($ && $.fn && $.fn.raty)) return false;
 
-  let activeIndex;
-  if (swiper.realIndex >= 0 && swiper.realIndex <= 2) {
-    activeIndex = 0;
-  } else if (swiper.realIndex >= 3 && swiper.realIndex <= 5) {
-    activeIndex = 1;
-  } else if (swiper.realIndex >= 6 && swiper.realIndex <= 9) {
-    activeIndex = 2;
-  }
 
-  if (dots[activeIndex]) {
-    dots[activeIndex].classList.add('active');
-  }
+const STAR_ON = buildStarUrl('#764191');
+const STAR_OFF = buildStarUrl('#ffffff');
+
+
+$($root).find('.card .js-stars').each(function () {
+const score = Number($(this).closest('.card__stars').data('score')) || 0;
+$(this).raty({ readOnly: true, score, starOn: STAR_ON, starOff: STAR_OFF, halfShow: false });
+});
+return true;
+    }
+async function init() {
+try {
+const res = await fetch(API_URL, { headers: { Accept: 'application/json' } });
+if (!res.ok) throw new Error(`Failed to load feedbacks: ${res.status}`);
+let payload = await res.json();
+let data = Array.isArray(payload) ? payload : (payload?.data || payload?.results || payload?.feedbacks || []);
+if (!Array.isArray(data)) data = [];
+
+
+const list = data.slice(0, TAKE);
+$slidesWrapper.innerHTML = '';
+list.forEach((item) => $slidesWrapper.appendChild(createSlide(item)));
+
+
+const swiper = new Swiper('#feedbacks-swiper', { slidesPerView: 1, spaceBetween: 8, speed: 450, grabCursor: true, allowTouchMove: true });
+
+
+if ($prev) $prev.addEventListener('click', () => swiper.slidePrev());
+if ($next) $next.addEventListener('click', () => swiper.slideNext());
+
+
+swiper.on('slideChange', () => updateDots(swiper));
+updateDots(swiper);
+
+
+
+const ok = initRaty($slidesWrapper);
+if (!ok) {
+
+document.querySelectorAll('#slides .card .js-stars').forEach((el) => {
+const score = Number(el.closest('.card__stars').dataset.score) || 0;
+el.innerHTML = createStarsHTML(score);
+});
+}
+} catch (err) {
+console.error('Feedbacks error:', err);
+$slidesWrapper.innerHTML = `<div class="swiper-slide"><article class="card"><p class="card__text">Не вдалося завантажити відгуки. Перевірте API.</p></article></div>`;
+const swiper = new Swiper('#feedbacks-swiper', { slidesPerView: 1, spaceBetween: 8 });
+updateDots(swiper);
+}
 }
 
-function initStars() {
-  $('.star-rating').raty({
-    readOnly: true,
-    starType: 'i',
-    score: function () {
-      return $(this).attr('data-score');
-    },
-    starOn: '★', // Заполненная звезда
-    starOff: '☆', // Пустая звезда
-    starHalf: '★', // Половинная звезда
-  });
-}
 
-console.log('🚀 Страница загружена, вызываем loadFeedbacks()');
-loadFeedbacks();
+document.addEventListener('DOMContentLoaded', init);
