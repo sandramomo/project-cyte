@@ -131,12 +131,10 @@ body {
     font-weight: 700;
     font-style: Bold;
     font-size: 32px;
-    text-wrap: balance;
     line-height: 130%;
     letter-spacing: -1%;
     max-width: 920px;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+
 }
 
 .card__user {
